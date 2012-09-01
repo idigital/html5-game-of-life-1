@@ -1,0 +1,25 @@
+body {
+   margin: 0px;
+   padding: 0px 0.5em;
+   width: 100%;
+   height: 100%;
+   overflow: hidden;
+}
+
+#controls {
+   width: 100%;
+   height: 70px;
+   margin: 0;
+}
+
+#controls li {
+   float: left;
+   text-decoration: none;
+   display: inline-block;
+   cursor: pointer;
+}
+
+#pause-button {
+   margin-left: 2px;
+}
+

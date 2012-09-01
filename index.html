@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+  <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/3.4.1/build/cssreset/cssreset-min.css" />
+  <link rel="stylesheet" href="game-of-life.css" type="text/css" media="screen" />
+  <script type="application/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+  <script type="application/javascript" src="game-of-life.js"></script>
+  <script type="application/javascript">
+
+    $(document).ready(function() {
+
+       var alive = [];
+       alive = alive.concat(GameOfLife.automata.gliderGun(10,0));
+       alive = alive.concat(GameOfLife.automata.lightWeightSpaceShip(40,10));
+       alive = alive.concat(GameOfLife.automata.lightWeightSpaceShip(60,20));
+       alive = alive.concat(GameOfLife.automata.gliderGun(80,30));
+
+       GameOfLife.board.init({
+          rows: 150,
+          columns: 250,
+          alive: alive
+       });
+
+       GameOfLife.canvas.init({
+          el: document.getElementById('game-of-life-canvas'),
+          model: GameOfLife.board
+       });
+
+       var pauseButton = $('#pause-button');
+       pauseButton.click(function() {
+          GameOfLife.board.pause();
+       });
+
+       var playButton = $('#play-button');
+       playButton.click(function() {
+          GameOfLife.board.play({
+             tick: GameOfLife.canvas.render
+          });
+       });
+
+       GameOfLife.canvas.render();
+
+    });
+  </script>
+</head>
+
+<body>
+  <canvas id="game-of-life-canvas"></canvas>
+  <ol id="controls">
+    <li id="play-button" class="button"><img src="images/play.png" /></li>
+    <li id="pause-button" class="button disabled"><img src="images/pause.png" /></li>
+  </ol>
+</body>
+
+</html>
